@@ -7,7 +7,18 @@ require("dotenv").config();
 
 let app = express();
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+
+app.use(
+  cors({
+    origin: [
+      "https://content-craft-psi.vercel.app"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 
 // app.use("/admin", adminRoute);
 app.use("/craft", craftRoute);
